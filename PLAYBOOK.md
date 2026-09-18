@@ -1,6 +1,6 @@
 # A portable playbook for human-led AI development
 
-Version: 1.0 — manual workflow reference, 18 September 2026
+Version: 1.1 — manual workflow reference, 19 September 2026
 
 ## Purpose and scope
 
@@ -9,6 +9,22 @@ This playbook describes a human-in-the-loop architect–implementer–reviewer w
 The objective is to reduce time and model usage per accepted change while preserving correctness. It does this through bounded tasks, explicit ownership, small current records, selective context loading and evidence-based stopping conditions. Savings are a hypothesis to measure, not a guarantee.
 
 This is a reusable method to adapt deliberately to each repository. It does not authorize work in a project by itself. No automation is required or proposed here.
+
+## Choose the smallest useful process
+
+Choose by uncertainty, dependencies and the cost of a mistake—not line count.
+
+| Work | Process |
+|---|---|
+| Clear, low-risk typo or spacing fix | Owner sends it directly to the implementer. Run a focused check and record the result in the existing task or commit description. No new architect session or task folder is needed. |
+| Bounded feature with several behaviors or an interface change | Use a written task, handback, scoped code review and any required owner checks. This is where the full loop is most useful. |
+| Critical or uncertain cancellation, concurrency, persistence ordering or state logic | Senior owns the reasoning and implementation upfront, defines invariants and checks, and delegates only suitable routine parts. |
+
+For a standalone tiny correction, a separate reviewer is optional if local project policy allows it. Record “owner accepted; no independent review” when that is what happened. Do not invent a code PASS.
+
+For corrections inside a reviewed feature or phase, batch the small changes into the next review checkpoint. Earlier approval does not cover the new code. The owner may test while review is pending.
+
+These files represent responsibilities, not mandatory paperwork for every change. Use fewer records when they still make ownership and evidence clear. Measure coordination time against the rework the process prevents. The [worked example](examples/manual-handoff.md) shows the full loop on a multi-state UI feature.
 
 ## 1. Two layers: shared method and local project
 
@@ -148,7 +164,7 @@ flowchart TD
     O --> N["Update CURRENT.md; give human the next action"]
 ```
 
-Human-result reconciliation does not automatically trigger a new code audit. A reported failure can justify focused inspection. Planning produces an assignment rather than fabricated execution evidence.
+When the owner reports test results, record them first. Inspect code if a reported failure calls for it; do not automatically repeat the code audit. Planning produces an assignment, not evidence that the work has run.
 
 ## 6. Chart: fresh economical-implementer session
 
@@ -178,7 +194,7 @@ A failed or incomplete implementation is handed back as blocked/incomplete, neve
 - Difficult design or repair involving cancellation, concurrency, durable ordering or nontrivial state machines: capable model by default.
 - Routine wiring around an established critical component may still go to the economical model.
 - A small localized repair may be implemented directly by the reviewer when local policy authorizes it and a handoff adds unnecessary work.
-- If a submitted economical-model repair fails to resolve its assigned defect, reassess ownership before a further repair assignment. Prefer senior implementation for unresolved correctness reasoning.
+- If the cheaper model submits a repair and the assigned defect remains, decide who should fix it before another attempt. Let the senior implement it when the problem needs deeper correctness reasoning.
 - Count unsuccessful repair submissions for the same defect, not transient compiler errors. Renaming the task does not reset the defect's repair history.
 - Keep one active writer, including coordination-file edits. Model changes and handoffs remain human-controlled.
 - The implementer runs proportionate authorized verification. An implementer's own verification is not independent review. High-consequence changes may warrant a separate scoped review.
@@ -189,7 +205,7 @@ These are defaults based on task characteristics; they are not universal ranking
 
 The human may send small, clear testing issues directly to the economical implementer without waiting for the architect or finishing a test pass. Examples include incorrect text, spacing, alignment, icons and straightforward visual mismatches with agreed requirements.
 
-Give the implementer the tested build, starting state, steps, expected result, observed result and checklist ID or screenshot where useful. The implementer records the issue in the active task, makes the scoped correction, runs proportionate checks and updates the handback. Do not create an elaborate new task for every typo.
+Give the implementer the tested build, starting state, steps, expected result, observed result and checklist ID or screenshot where useful. The implementer records the issue in the active task, makes the scoped correction, runs proportionate checks and updates the handback. Do not create an elaborate new task for every typo. For a standalone tiny correction using the lighter process, a short result in the commit description can replace a task and handback.
 
 Escalate before editing if the diagnosis involves data loss, permissions/lifecycle, cancellation, concurrency, event duplication, timing/state correctness, ambiguous behavior or a new product decision. Small-looking symptoms do not establish a simple cause. One unsuccessful submitted repair requires reassessment before another economical-model repair assignment.
 
@@ -211,9 +227,9 @@ Minimal workflow states are `ready`, `implementing`, `ready_for_review`, `change
 
 ### During a task
 
-Maintain one current task contract, one latest handback and one current review. Before replacing evidence-bearing records, preserve their previous versions in Git or in an explicit small submission snapshot. Do not assume uncommitted edits are recoverable.
+For work using the full loop, keep one current task, one latest handback and one current review. Before replacing evidence-bearing records, preserve their previous versions in Git or in an explicit small submission snapshot. Do not assume uncommitted edits are recoverable.
 
-Each handback has a submission ID and code commit. Review records tie finding IDs and resolutions to submissions. Documentation may be committed after the code it describes; identify the code commit separately rather than attempting a self-referential commit hash.
+A submission is a particular version of the code offered for review. Each handback has a submission ID and its exact code commit. Review records tie finding IDs and resolutions to submissions. Documentation may be committed after the code it describes; identify the code commit separately rather than attempting a self-referential commit hash.
 
 ### At task closure
 

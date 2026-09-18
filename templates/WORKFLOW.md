@@ -4,6 +4,14 @@ Adopted playbook version/commit:
 Local adaptations and reason:
 Role-to-model mapping:
 
+## Choose the amount of process
+
+- Clear, low-risk standalone correction: direct owner request, focused check and short result in an existing task or commit description; no new task folder required.
+- Feature with interacting behavior: task, handback, scoped review and required owner checks.
+- Critical or uncertain logic: senior implementation upfront.
+- State this project's policy for independent review of standalone tiny fixes. If omitted, retain the full review requirement. Never label self-checks or owner acceptance as independent review.
+- Corrections within a reviewed feature/phase remain pending review until the next checkpoint. Choose by risk and dependencies, not line count.
+
 ## Ownership
 
 - Human starts sessions and owns product decisions/experience acceptance. One active writer.
@@ -13,7 +21,7 @@ Role-to-model mapping:
 
 ## Direct human corrections
 
-Small, clear issues within existing requirements may go directly to the implementer. Record build, reproduction, expected/observed behavior and affected checks. Escalate critical or ambiguous issues before editing. Save handback and mark changed code pending review. Owner may continue testing; review the accumulated delta at the next checkpoint.
+Small, clear issues within existing requirements may go directly to the implementer. Record build, reproduction, expected/observed behavior and affected checks. Escalate critical or ambiguous issues before editing. Within the full loop, save handback and mark changed code pending review. A standalone correction using the locally authorized lighter process needs a short result instead. Owner may continue testing; review the accumulated delta at the next checkpoint.
 
 ## Evidence and stopping
 

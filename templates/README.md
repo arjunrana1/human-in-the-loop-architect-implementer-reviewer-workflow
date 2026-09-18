@@ -2,6 +2,8 @@
 
 Copy only what the project needs, fill the fields, and remove template guidance from live assignments. Existing documents can serve these responsibilities. Do not install all templates as mandatory startup reading.
 
+For tiny standalone corrections, an existing task or commit description may be enough. Choose the [smallest useful process](../PLAYBOOK.md#choose-the-smallest-useful-process) before creating files; keep any stricter local review policy.
+
 | Template | Suggested project destination |
 |---|---|
 | [AGENTS](AGENTS.md) | repository root |

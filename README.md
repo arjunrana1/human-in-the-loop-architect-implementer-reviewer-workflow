@@ -10,8 +10,16 @@ Use a capable model for architecture, difficult implementation and review; use a
 
 - [Detailed playbook](PLAYBOOK.md): objectives, file responsibilities, context loading, review/repair rules, record lifecycle and two flowcharts.
 - [Templates](templates/README.md): small starting files to adapt, not a mandatory document bundle.
-- [Worked example](examples/manual-handoff.md): a fictional owner-testing issue, direct correction and review checkpoint.
-- [Changes](CHANGELOG.md): version history. Current reference: **1.0**.
+- [Worked example](examples/manual-handoff.md): an Unread filter with filled-in task, handback, review and current-state records.
+- [Changes](CHANGELOG.md): version history. Current reference: **1.1**.
+
+## Match the process to the work
+
+- **Tiny, clear correction:** direct request, focused check and short result. Skip the separate architect session and new task folder.
+- **Feature with interacting behavior:** use the task → implementation → review → owner-testing loop.
+- **Critical or uncertain logic:** have the senior implement it upfront; delegate routine parts where useful.
+
+Inside a reviewed feature or phase, batch small corrections for the next review checkpoint. For a standalone tiny fix, independent review is optional when local policy allows it; label what was actually checked. See [process selection](PLAYBOOK.md#choose-the-smallest-useful-process).
 
 ## Adopt in a project
 
@@ -41,7 +49,7 @@ Codex and GLM are examples; substitute the models and tools available to you. Ve
 
 ## Send small testing issues directly to the implementer
 
-You do not need to report every typo or visual mismatch to the architect. Send the tested build, steps, expected/observed behavior, and a screenshot/check ID where useful. The implementer records the issue, fixes it within existing requirements, performs proportionate checks and saves a handback. The reviewer checks the accumulated delta at the next checkpoint.
+You do not need to report every typo or visual mismatch to the architect. Send the tested build, steps, expected/observed behavior, and a screenshot/check ID where useful. The implementer records the issue, fixes it within existing requirements, performs proportionate checks and records the result. Within the full loop, it saves a handback and the reviewer checks the accumulated delta at the next checkpoint.
 
 **Bring these to the architect first:** lost data, permissions/lifecycle, cancellation, inconsistent state, duplicate actions/events, timing or persistence, unclear behavior, new product decisions, or a small repair that failed once. The implementer must escalate if inspection reveals such complexity. Earlier code approval does not cover unreviewed fixes.
 
