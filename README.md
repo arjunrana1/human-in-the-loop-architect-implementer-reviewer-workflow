@@ -18,7 +18,8 @@ Examples:
 - A straightforward visual mismatch with the agreed design.
 - A small correction whose expected behavior is already specified.
 Give it the reproduction, expected result, and a screenshot if useful.
-Bring to Codex first
+
+**Bring to Codex first**
 Issues involving:
 - Lost data, permissions, cancellation, lifecycle, or inconsistent state.
 - Duplicate actions/events, timing, or persistence.
